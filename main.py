@@ -1,7 +1,7 @@
 import json,os,sys,urllib.request
 E=os.environ.get("MAKEFUN_ENV_URL") or sys.exit("no env")
 post=lambda p,b:json.load(urllib.request.urlopen(E+p,json.dumps(b).encode()))
-B=bytearray(128);KW=KB=SD=0;N=0;BUD=90000
+B=bytearray(128);KW=KB=SD=0;N=0;BUD=200000
 class St(Exception):pass
 V=[0]+[100,320,330,500,900,0]*2
 KN=[33,31,18,14,-14,-18,-31,-33];KG=[1,-1,16,-16,15,17,-15,-17];DG=[15,17,-15,-17];ST=[1,-1,16,-16]
@@ -89,11 +89,14 @@ def ev():
 def S(d,a,be,s,pl):
  global N;N+=1
  if N>BUD:raise St
+ ck=0
  if d<=0:
-  st=s*ev()
-  if st>=be:return be
-  if st>a:a=st
- ms=gen(s,1 if d<=0 else 0)
+  ck=atk(KW if s>0 else KB,-s)
+  if not ck:
+   st=s*ev()
+   if st>=be:return be
+   if st>a:a=st
+ ms=gen(s,0 if ck or d>0 else 1)
  ms.sort(key=lambda m:-V[B[m>>7&127]])
  best=-10**6;lg=0
  for m in ms:
@@ -103,8 +106,8 @@ def S(d,a,be,s,pl):
   if sc>best:best=sc
   if sc>a:a=sc
   if a>=be:break
- if d>0 and not lg:return -10**5+pl if atk(KW if s>0 else KB,-s) else 0
- return best if d>0 else a
+ if not lg and(d>0 or ck):return -10**5+pl if atk(KW if s>0 else KB,-s) else 0
+ return best if d>0 or ck else a
 def parse(fen):
  global KW,KB,SD
  B[:]=bytes(128)

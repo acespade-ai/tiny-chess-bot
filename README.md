@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/tiny-chess-01/acespade-ai/tiny-chess-bot/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![reward](https://make.fun/badge/tiny-chess-01/acespade-ai/tiny-chess-bot/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
-A 4 KB Python chess engine: alpha-beta search with quiescence, MVV-LVA move ordering and a formula piece-square eval, playing a fixed 90,000-node budget per move. No clock, no randomness: the same position always gets the same move.
+A 4 KB Python chess engine: alpha-beta search with quiescence (check evasions included), MVV move ordering and a formula piece-square eval, playing a fixed 200,000-node budget per move. No clock, no randomness: the same position always gets the same move.
 
 ## Run it
 
